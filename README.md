@@ -97,3 +97,5 @@ Observação sobre Wokwi Chat: você pode colar o conteúdo do `sketch.ino` e do
 ## Vídeo de demonstração
 [YouTube](https://youtu.be/Egb8NpEcHjw)
 
+## Wokwi
+[Wokwi](https://wokwi.com/projects/443280175102916609)
