@@ -87,5 +87,13 @@ Observação sobre Wokwi Chat: você pode colar o conteúdo do `sketch.ino` e do
 - Bibliotecas: `LiquidCrystal`, `EEPROM`, `DHT sensor library` (Adafruit) e `Adafruit Unified Sensor`
 - Serial Monitor para interação/validação
 
+
+## Integrantes
+- Julia Monteiro -  RM: 557023 - 2TDSPV
+- Sofia Andrade Petruk - RM: 556585 - 2TDSPV 
+- Victor Henrique Estrella Carracci - RM: 556206 - 2TDSPH
+
+
 ## Vídeo de demonstração
-Inclua o link aqui quando publicar no YouTube.
+[YouTube](https://youtu.be/Egb8NpEcHjw)
+
