@@ -67,63 +67,25 @@ Observação sobre Wokwi Chat: você pode colar o conteúdo do `sketch.ino` e do
 - Opcional: `SET SETOR DEFAULTS` força reaplicar os defaults do código e salvar.
 
 ## Comandos rápidos
-- `HELP`
-- `ASSOC VAGA1:MOTO123`
-- `ASSOC VAGA2:MOTO456`
-- `STATUS`
-- `LOG DUMP`
-- `LOG CLEAR`
-- `OUTPUT HUMAN` | `OUTPUT MACHINE` (muda formato do STATUS periódico)
-- `MODE MAINT ON|OFF` (modo manutenção, suprime alertas)
-- `SET GRACE <segundos>` (tolerância antes de considerar "desaparecida")
 - `SET SETOR VAGA1:<nome>` | `SET SETOR VAGA2:<nome>`
-- `SCAN VAGA1:<ID>` | `SCAN VAGA2:<ID>` (simula leitura de QR)
-
-### Roteiro de teste (copiar/colar no Monitor Serial)
-1) `HELP`
-2) `ASSOC VAGA1:MOTO123`
-3) `ASSOC VAGA2:MOTO456`
-4) Simule Vaga2 ocupada com Vaga1 livre (mova o PIR2 no Wokwi) e observe alerta no LCD/Serial.
-5) `STATUS` (verifique também as METRICS após alguns segundos de simulação)
-6) `LOG DUMP` (confira logs persistidos)
-7) `LOG CLEAR` (limpe os logs e confirme com outro `LOG DUMP`)
-8) `SET SETOR VAGA1:AZUL` e `SET SETOR VAGA2:VERDE` (veja no LCD/STATUS)
-9) `SCAN VAGA1:MOTO123` (OK) e depois `SCAN VAGA1:MOTO999` (gera divergência)
-10) `SET GRACE 10` e depois deixe ambas vagas livres por >10s para disparar "desaparecida"
-11) `MODE MAINT ON` enquanto movimenta sensores para não gerar alertas
-
-## Dashboard opcional (fora do Wokwi)
-Se você usar uma placa física, pode integrar a saída do Serial a um dashboard/CSV (por exemplo, com Python + `pyserial`). Não está incluído neste projeto focado no `.ino` e Wokwi.
-
-## Como mudar Temperatura/Umidade no Wokwi
-- Clique no sensor DHT22 no diagrama.
-- No painel de propriedades (lado direito), ajuste os sliders/valores de Temperatura (°C) e Umidade (%).
-- Alternativamente, edite o `simulator`/`props` do DHT no `diagram.json` do Wokwi, mas a interface gráfica é a forma mais rápida.
 
 ## Testes funcionais sugeridos
 - Caso 1: Vaga2 ocupada sem Vaga1 ("vaga errada").
 - Caso 2: Nenhuma vaga ocupada ("desaparecida") após ter associado uma moto.
 - Caso 3: Entrada/Saída alternadas para verificar debouncing e logs.
-- Caso 4: Temperatura/umidade variando (slider do Wokwi) e métricas no `STATUS`.
+
+## Resultados parciais
+- Persistência de eventos na EEPROM usando ring buffer com checksum simples.
+- Persistência dos setores (Vaga1/Vaga2) em área reservada da EEPROM, com valores padrão definíveis no código e comando de restauração (`SET SETOR DEFAULTS`).
+- Métricas em tempo real via Serial (`STATUS`): tempo de ocupação por vaga e máxima na sessão.
+- Lógica de alertas funcional: "vaga errada" e "moto desaparecida" com tempo de tolerância configurável (`SET GRACE`).
+- Suporte a dois formatos de saída no Serial (HUMAN/MACHINE) para facilitar leitura e ingestão por ferramentas externas.
 
 ## Tecnologias utilizadas
 - Arduino UNO (C++/Arduino)
 - Wokwi (simulação)
 - Bibliotecas: `LiquidCrystal`, `EEPROM`, `DHT sensor library` (Adafruit) e `Adafruit Unified Sensor`
 - Serial Monitor para interação/validação
-
-## Resultados parciais (Sprint 3)
-- Persistência de eventos em ring buffer com checksums e pageo correto da EEPROM
-- Persistência de Setor (Vaga1/Vaga2) em área reservada da EEPROM, com defaults no código e comando de restauração
-- Métricas online: tempo de ocupação por vaga, médias/máximos de T/Umid
-- Alertas funcionais (vaga errada e desaparecida com grace configurável)
-- LCD com duas páginas rotativas (vagas/setores e clima/IDs)
-- Saída Serial em dois formatos (HUMAN/MACHINE) para fácil leitura e ingestão
-
-## Critérios Sprint 3 (mapeamento)
-- Dashboard/output visual (LCD + opcional dashboard serial): até 30 pts
-- Persistência (EEPROM ring buffer + CSV): até 20 pts
-- Organização/documentação (este README, comandos, testes, estrutura): até 20 pts
 
 ## Vídeo de demonstração
 Inclua o link aqui quando publicar no YouTube.
