@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "author": "SmartMottu IA",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 48.6, "left": 47.4, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht", "top": 297.9, "left": 100.2, "attrs": { "label": "DHT22" } },
+    { "type": "wokwi-led", "id": "led", "top": 34.8, "left": 407, "attrs": { "color": "red", "label": "LED Alerta" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 450, "left": 350, "attrs": { "label": "Buzzer" } },
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": 51.43, "left": 601.6, "attrs": { "pins": "D7:D6:D5:D4:E:RS" } },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -101.6, "left": 40.62, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir2", "top": -207.2, "left": 223.02, "attrs": {} }
+  ],
+  "connections": [
+    [ "pir1:OUT", "uno:2", "cyan", [ "h201.46", "h-4.1" ] ],
+    [ "pir1:VCC", "uno:5V", "yellow", [ "h-57.6", "v201.6", "h188.2" ] ],
+    [ "pir1:GND", "uno:GND", "black", [ "v0" ] ],
+    [ "pir2:OUT", "uno:3", "black", [ "h-0.14", "v172.8" ] ],
+    [ "pir2:VCC", "uno:5V", "gray", [ "v28.8", "h76.8", "v326.4", "h-138.2" ] ],
+    [ "pir2:GND", "uno:GND", "black", [ "v0" ] ],
+    [ "dht:SDA", "uno:4", "green", [ "h76.9", "v0", "h5.7" ] ],
+    [ "dht:VCC", "uno:5V", "red", [ "h-38.4", "v-153.6", "h130.6" ] ],
+    [ "dht:GND", "uno:GND", "black", [ "v0" ] ],
+    [ "led:A", "uno:5", "yellow", [ "v19.2", "h-176.6" ] ],
+    [ "led:C", "uno:GND", "black", [ "v0" ] ],
+    [ "buzzer:1", "uno:6", "orange", [ "v13.2", "h-131.1" ] ],
+    [ "buzzer:2", "uno:GND", "black", [ "v0" ] ],
+  [ "lcd:D7", "uno:7", "white", [ "v-152.17", "h-520.1" ] ],
+  [ "lcd:D6", "uno:8", "gray", [ "v-161.77", "h-523.6" ] ],
+  [ "lcd:D5", "uno:9", "violet", [ "v-171.37", "h-527.1" ] ],
+  [ "lcd:D4", "uno:10", "green", [ "v-180.97", "h-530.6" ] ],
+    [ "lcd:E", "uno:11", "white", [ "v-209.77", "h-488.6" ] ],
+    [ "lcd:RS", "uno:12", "green", [ "v-248.17", "h-478.6" ] ],
+    [ "lcd:VSS", "uno:GND", "black", [ "v0" ] ],
+    [ "lcd:VDD", "uno:5V", "blue", [ "v87.83", "h-434.1" ] ],
+    [ "lcd:RW", "uno:GND", "black", [ "v0" ] ],
+    [ "lcd:K", "uno:GND", "black", [ "v0" ] ],
+    [ "lcd:A", "uno:5V", "cyan", [ "v30.23", "h-559.1" ] ]
+  ],
+  "dependencies": {}
+}
